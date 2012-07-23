@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - HTML5 Presentations</title>
+
+		<meta name="description" content="An easy to use CSS 3D slideshow tool for quickly creating good looking HTML presentations.">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+                <!-- Title page -->
+				<section>
+					<h1>Sprinkle</h1>
+					<h3 class="inverted">Declarative dependency-based configuration management and server provisioning</h3>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+
+				<!-- What we like to do (octopus) -->
+
+				<section>
+                    <section>
+                        <h2>Developers and DevOps</h2>
+                        <p>
+                            Ya' know, devops, that <i>funny grey area</i> between sweet <b>agile development</b> and <b>system administration</b>?
+                        </p>
+                        <aside class="notes">
+                            Lots of IT infrastructure in software dev:
+                             - developer machine
+                             - QA environment
+                             - stage environment
+                             - production environment
+                             - client infrastructure...
+
+                             That's at least 5 lots of machines we sort of want to manage the configuration of, each with different requirements.
+                        </aside>
+                    </section>
+                    <section>
+                        <img width="960" height="600" src="img/emacs.jpg">
+                    </section>
+                    <section>
+                        <h3>Typical questions in devops</h3>
+                        <p>
+                            <ul>
+                                <li class="fragment">"are all my project dependencies <b>installed</b>?"</li>
+                                <li class="fragment">"is the right version of Ruby/Python <b>activated</b>?"</li>
+                                <li class="fragment">"has this box been <b>configured</b> to mount my EBS drive in <code>/etc/fstab</code>?"</li>
+                                <li class="fragment">"is the database server even <b>running</b>?"</li>
+                                <br/>
+                                <div class="fragment">And the biggest question of all:</div>
+                                <br/>
+                                <div class="fragment" style="font-size: 72px; line-height: 72px">"how can I ensure machine <b>X</b> is exactly as I'd like it <b>with one button press</b>?"</div>
+                            </ul>
+                        </p>
+                    </section>
+                </section>
+
+				<!-- Puppet is not the answer -->
+				<section>
+
+                    <section>
+                        <img width="349" height="469" src="img/puppet.png">
+                        <br/>
+                        <br/>
+                        <h2>... Puppet is hardly the answer.</h2>
+                    </section>
+                    <section>
+                        <h2>A few grudges with puppet</h2>
+                        <br/>
+                        <p class="fragment">Puppet was designed for large scale deployments, but I'm <b>only managing 5 boxes</b>.</p>
+                        <br/>
+                        <p class="fragment">... and almost immediately I'm forced to use virtualisation to test my puppet script.</p>
+                        <br/>
+                        <p class="fragment">... and provision a puppet master node.</p>
+                        <br/>
+                        <p class="fragment">... and even upon deployment I have to sit around for 30 minutes to see if stuff actually worked.</p>
+                        <br/>
+                        <p class="fragment">I don't like finding out there aren't already classes for the thing I want to manage.</p>
+                        <br/>
+                        <aside class="notes">
+                            Of course, there is puppet apply, but that is still slow, and run it locally. What if you are writing
+                            a script for a production server? Why would you want your development machine to have installed all of those
+                            those useless binaries?
+                        </aside>
+                    </section>
+
+                    <section>
+                        <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+                            But you can use <code>puppet apply</code> and do everything locally!
+                        </blockquote>
+                        <br/>
+                        you say. Well...
+                        <br/>
+                        <br/>
+                        <h3 class="fragment">My grudges with '<code>puppet apply</code>'</h3>
+                        <br/>
+                        <p class="fragment">I don't <i>really</i> want to <b>install all those packages</b> on my dev machine.</p>
+                        <br/>
+                        <p class="fragment">I'd much rather be affecting a <b>remote machine</b> while editing the puppet script locally.</p>
+                        <br/>
+                        <p class="fragment">I don't want to <b>wait 30 seconds</b> before I know whether my 1 line change in my puppet script made any difference to the world.</p>
+                    </section>
+
+                    <section>
+                        <h3><b>More grudges</b> with '<code>puppet apply</code>'</h3>
+                        <br/>
+                        <p class="fragment">Say I use a VM to make the script. I have <b>no idea</b> whether it'd actually work in the networking environment, say, up in the cloud.</p>
+                        <br/>
+
+                        Okay, that was the only overflow.
+                    </section>
+
+                </section>
+				<!-- Sprinkle -->
+				<!-- Syntax (nested pages for use) -->
+				<!-- Video demonstration ...? -->
+
+				<!-- Nested sections -->
+				<section>
+					<section>
+						<h2>Vertical Slides</h2>
+						<p>
+							Slides can be nested inside of other slides,<br/>
+							try pressing <a href="#/2/1">down</a>.
+						</p>
+						<a href="#/2/1" class="image">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+						</a>
+					</section>
+					<section>
+						<h2>Basement Level 1</h2>
+						<p>Press down or up to navigate.</p>
+					</section>
+					<section>
+						<h2>Basement Level 2</h2>
+						<p>Cornify</p>
+                        <img width="960" height="720" src="img/sad-puppeteer.gif">
+					</section>
+					<section>
+						<h2>Basement Level 3</h2>
+						<p>That's it, time to go back up.</p>
+						<a href="#/2" class="image">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" style="-webkit-transform: rotate(180deg);">
+						</a>
+					</section>
+				</section>
+
+				<section>
+					<h2>Holistic Overview</h2>
+					<p>
+						Press <strong>ESC</strong> to enter the slide overview!
+					</p>
+				</section>
+
+				<section>
+					<h2>Works in Mobile Safari</h2>
+					<p>
+						Try it out! You can swipe through the slides pinch your way to the overview.
+					</p>
+				</section>
+
+				<section>
+					<h2>Transition Styles</h2>
+					<p>
+						You can select from different transitions, like:
+					</p>
+					<ul>
+						<li><a href="http://lab.hakim.se/reveal-js/?transition=cube">Cube</a></li>
+						<li><a href="http://lab.hakim.se/reveal-js/?transition=page">Page</a></li>
+						<li><a href="http://lab.hakim.se/reveal-js/?transition=concave">Concave</a></li>
+						<li><a href="http://lab.hakim.se/reveal-js/?transition=linear">Linear</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Marvelous Unordered List</h2>
+					<ul>
+						<li>No order here</li>
+						<li>Or here</li>
+						<li>Or here</li>
+						<li>Or here</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Fantastic Ordered List</h2>
+					<ol>
+						<li>One is smaller than...</li>
+						<li>Two is smaller than...</li>
+						<li>Three!</li>
+					</ol>
+				</section>
+
+				<section>
+					<section data-state="alert">
+						<h2>Global State</h2>
+						<p>
+							Set <code>data-state="something"</code> on a slide and <code>"something"</code>
+							will be added as a class to the document element when the slide is open. This let's you
+							apply broader style changes, like switching the background.
+						</p>
+						<a href="#/7/1" class="image">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+						</a>
+					</section>
+					<section data-state="blackout">
+						<h2>"blackout"</h2>
+						<a href="#/7/2" class="image">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+						</a>
+					</section>
+					<section data-state="soothe">
+						<h2>"soothe"</h2>
+						<a href="#/7/0" class="image">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" style="-webkit-transform: rotate(180deg);">
+						</a>
+					</section>
+				</section>
+
+				<section data-state="customevent">
+					<h2>Custom Events</h2>
+					<p>
+						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
+					</p>
+					<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">Reveal.addEventListener( 'customevent', function() {
+	console.log( '"customevent" has fired' );
+} );
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Clever Quotes</h2>
+					<p>
+						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+						The nice thing about standards is that there are so many to choose from</q> and block:
+					</p>
+					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+						For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
+						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.
+					</blockquote>
+				</section>
+
+				<section>
+					<h2>Pretty Code</h2>
+					<pre><code contenteditable>
+function linkify( selector ) {
+  if( supports3DTransforms ) {
+
+    var nodes = document.querySelectorAll( selector );
+
+    for( var i = 0, len = nodes.length; i < len; i++ ) {
+      var node = nodes[i];
+
+      if( !node.className ) ) {
+        node.className += ' roll';
+      }
+    };
+  }
+}
+					</code></pre>
+					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+				</section>
+
+				<section>
+					<h2>Intergalactic Interconnections</h2>
+					<p>
+						You can link between slides internally,<br/>
+						<a href="#/2/3">like this</a>.
+					</p>
+				</section>
+
+				<section>
+					<h2>Fragmented Views</h2>
+					<p>Hit the next arrow...</p>
+					<p class="fragment">... to step through ...</p>
+					<ol>
+						<li class="fragment"><code>any type</code></li>
+						<li class="fragment"><em>of view</em></li>
+						<li class="fragment"><strong>fragments</strong></li>
+					</ol>
+				</section>
+
+				<section>
+					<h2>Spectacular image!</h2>
+					<a class="image" href="http://hakim.se/experiments/html5/breakdom/" target="_blank">
+						<img width="320" height="412" src="https://s3.amazonaws.com/hakim-static/reveal-js/breakdom.png">
+					</a>
+				</section>
+
+				<section>
+					<h2>Stellar Links</h2>
+					<ul>
+						<li><a href="https://github.com/hakimel/reveal.js">Source code on github</a></li>
+						<li><a href="http://hakim.se/projects/reveal-js">Read more on my site</a></li>
+						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>THE END</h1>
+					<h3 class="inverted">BY Hakim El Hattab / hakim.se</h3>
+				</section>
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+
+		<script>
+			// Load reveal.js as well as a classList polyfill if needed
+			head.js( !document.body.classList ? 'lib/js/classList.js' : null )
+				.js( 'js/reveal.js', function() {
+
+				// Parse the query string into a key/value object
+				var query = {};
+				location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+					query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+				} );
+
+				// Fires when a slide with data-state=customevent is activated
+				Reveal.addEventListener( 'customevent', function() {
+					console.log( '"customevent" has fired' );
+				} );
+
+				// Fires each time a new slide is activated
+				Reveal.addEventListener( 'slidechanged', function( event ) {
+					// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+				} );
+
+				// Full list of configuration options available here:
+				// https://github.com/hakimel/reveal.js#configuration
+				Reveal.initialize({
+					controls: true,
+					progress: true,
+					history: true,
+
+					theme: query.theme || 'default', // default/neon/beige
+					transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+				});
+
+			} );
+
+			// Load highlight.js for syntax highlighting of code samples
+			head.js( 'lib/js/highlight.js', function() {
+				hljs.initHighlightingOnLoad();
+			} );
+
+			// If we're runnning the notes server we need to include some additional JS
+			// TODO Is there a better way to determine if we're running the notes server?
+			if( window.location.host === 'localhost:1947' ) {
+				head.js( 'socket.io/socket.io.js', 'plugin/speakernotes/client.js' );
+			}
+		</script>
+
+	</body>
+</html>
