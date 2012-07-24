@@ -378,12 +378,13 @@ end
                         <h2>Pros</h2>
                         <p>
                             <ul>
-                                <li class="fragment">Dependencies are automatically computed</li>
-                                <li class="fragment">Local edits, remote effects</li>
-                                <li class="fragment">Amenable to iterative development within target environment(s)</li>
-                                <li class="fragment">No need to install anything on remote machines (just uses SSH)</li>
-                                <li class="fragment">Good selection of pre-build <b>installer</b> and <b>verifier</b> primitives</li>
-                                <li class="fragment">Powerful Ruby-backed custom actions using Ruby (all commands run as sudo)</li>
+                                <li class="fragment">Quite declarative</li>
+                                <li class="fragment">Dependencies, <u>not</u> notifications or messages</li>
+                                <li class="fragment">Make local edits, see remote effects</li>
+                                <li class="fragment">Amenable to iterative development directly in all your target environment(s)</li>
+                                <li class="fragment">No special installation on remote machines (thanks to SSH)</li>
+                                <li class="fragment">Comes with decent selection of <b>installer</b> and <b>verifier</b> primitives</li>
+                                <li class="fragment">Powerful Ruby-backed DSL for custom actions (all commands executed as <code>sudo</code>)</li>
                             </ul>
                         </p>
                     </section>
@@ -401,8 +402,8 @@ end
                         <h2>Cons (and limitations)</h2>
                         <p>
                             <ul>
-                                <li class="fragment">Requires SSH root access (a Capistrano assumption)</li>
-                                <li class="fragment">passwordless SSH access requires provisioning</li>
+                                <li class="fragment">Requires SSH into sudoer account (a Capistrano assumption)</li>
+                                <li class="fragment">passwordless SSH access requires key management and provisioning</li>
                                 <li class="fragment">Not amazingly active... last commit was 4 months ago</li>
                             </ul>
                         </p>
@@ -413,9 +414,7 @@ end
                     <h1>Thanks!</h1>
                     <h3 class="inverted">By Hok Shun Poon</h3>
                 </section>
-
             </div>
-
 
             <!-- The navigational controls UI -->
             <aside class="controls">
