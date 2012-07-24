@@ -146,10 +146,12 @@ body {
 
 .reveal ol {
 	list-style-type: decimal;
+    line-height: 130%;
 }
 
 .reveal ul {
 	list-style-type: disc;
+    line-height: 130%;
 }
 
 .reveal ul ul {
