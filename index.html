@@ -160,9 +160,7 @@
                     </section>
                     <section data-state="dark-div">
                         <h3>Push based configuration management</h3>
-                        <pre>
-                            <img width="868" height="761" src="img/network.png">
-                        </pre>
+                        <img width="740" height="700" src="img/network.png">
                         <aside class="notes">
                             Well there's definitely a difference from puppet in that all your configuration
                             is stored and edited locally, and yet applied onto various environments.
@@ -376,30 +374,38 @@ end
 
                 <!-- Appendix from reveal.js -->
                 <section>
-                    <section data-state="alert">
-                        <h2>Some limitations</h2>
+                    <section data-state="soothe">
+                        <h2>Pros</h2>
                         <p>
                             <ul>
-                                <li class="fragment">Testing is still a bitch.</li>
-                                <li class="fragment">You will need to iteratively</li>
-                                <li class="fragment">Development of such a script is much faster than making a Puppet script.</li>
-                                <li class="fragment">SSH access to every machine requires provisioning.</li>
-                                <li class="fragment">SSH key management</li>
-                                <li class="fragment">Often requires SSH root access (necessarily less secure)</li>
+                                <li class="fragment">Dependencies are automatically computed</li>
+                                <li class="fragment">Local edits, remote effects</li>
+                                <li class="fragment">Amenable to iterative development within target environment(s)</li>
+                                <li class="fragment">No need to install anything on remote machines (just uses SSH)</li>
+                                <li class="fragment">Good selection of pre-build <b>installer</b> and <b>verifier</b> primitives</li>
+                                <li class="fragment">Powerful Ruby-backed custom actions using Ruby (all commands run as sudo)</li>
                             </ul>
                         </p>
                     </section>
                     <section data-state="blackout">
-                        <h2>"blackout"</h2>
-                        <a href="#/7/2" class="image">
-                            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-                        </a>
+                        <h2>What's not different from Puppet</h2>
+                        <p>
+                            <ul>
+                                <li class="fragment">Testing</li>
+                                <li class="fragment">ERBs for configuration templates</li>
+                                <li class="fragment">Idempotency entirely depends on developer supplied commands</li>
+                            </ul>
+                        </p>
                     </section>
-                    <section data-state="soothe">
-                        <h2>"soothe"</h2>
-                        <a href="#/7/0" class="image">
-                            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" style="-webkit-transform: rotate(180deg);">
-                        </a>
+                    <section data-state="alert">
+                        <h2>Cons (and limitations)</h2>
+                        <p>
+                            <ul>
+                                <li class="fragment">Requires SSH root access (a Capistrano assumption)</li>
+                                <li class="fragment">passwordless SSH access requires provisioning</li>
+                                <li class="fragment">Not amazingly active... last commit was 4 months ago</li>
+                            </ul>
+                        </p>
                     </section>
                 </section>
 
