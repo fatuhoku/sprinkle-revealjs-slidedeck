@@ -159,9 +159,14 @@ It's about what you, the dev, wants to do to a machine.
                         </ul>
 					</section>
 					<section data-state="dark-div">
-						<h2>Basement Level 2</h2>
-						<p>Cornify</p>
-                        <img width="960" height="720" src="img/sad-puppeteer.gif">
+						<h3>Push based configuration management</h3>
+						<pre>
+							<img width="868" height="761" src="img/network.png">
+						</pre>
+						<aside class="notes">
+							Well there's definitely a difference from puppet in that all your configuration
+							is stored and edited locally, and yet applied onto various environments.
+						</aside>
 					</section>
 				</section>
 
@@ -182,7 +187,7 @@ It's about what you, the dev, wants to do to a machine.
 
 				<section>
                     <section>
-                        <h3>1.1 Packages</h3>
+                        <h3>1.1 Packages (overview)</h3>
                         <p>Loosely, named packages but could also mean
                             <ul>
                                 <li><b>packages</b></li>
@@ -196,7 +201,7 @@ It's about what you, the dev, wants to do to a machine.
                     </section>
 
                     <section>
-                        <h3>1.2 Packages (example)</h3>
+                        <h3>1.2 Packages (apt, dependencies)</h3>
                         <pre><code>
     # install.rb
     package :ruby do
@@ -210,11 +215,6 @@ It's about what you, the dev, wants to do to a machine.
       description 'Ruby Virtual Machine Build Dependencies'
       apt %w( bison zlib1g-dev libssl-dev libreadline5-dev libncurses5-dev file )
     end
-
-    package :mysql, :provides => :database do
-      description 'MySQL Database'
-      apt %w( mysql-server mysql-client )
-    end
                         </code></pre>
                         <p>Included install primitives: <code>apt</code>, <code>.deb</code>, <code>yum</code>, <code>.rpm</code>, Homebrew. When in doubt install <b>from source</b> and/or <b>shell out into <code>bash</code></b> using the <code>runner</code> primitive.</p>
                         <p>(example from <a href="https://github.com/crafterm/sprinkle/">Sprinkle GitHub README</a>)</p>
@@ -222,27 +222,104 @@ It's about what you, the dev, wants to do to a machine.
 
 
                     <section>
-                        <h3>1.3 Packages (example)</h3>
+                        <h3>1.3 Packages (virtual packages)</h3>
+                        <br/>
+                        <pre><code>
+    package :mysql, :provides => :database do
+      description 'MySQL Database'
+      apt %w( mysql-server mysql-client )
+    end
+                        </code></pre>
+                        <br/>
+                        <p>The provides clause associates concrete packages to virtual packages.</p>
+                    </section>
+
+                    <section>
+                        <h3>1.4 Packages (UNIX users)</h3>
                         <pre><code>
     # install.rb
     package :service_user do
+
       description "Ensure there's a no-login user called 'service'"
       service_user = 'service'
 
       runner "useradd -m #{service_user} --shell /usr/sbin/nologin"
+
       verify do
         has_user "#{service_user}"
         has_directory "/home/#{service_user}"
       end
+
     end
                         </code></pre>
                         <p>Ensure a user exists.</p>
+                    </section>
+
+                    <section>
+                        <h3>1.5 Packages (configuration files)</h3>
+                        <pre><code>
+    # install.rb
+    package :configure_sickbeard do
+        description "Configuration file for sabnzbd."
+        requires :service_user
+        sickbeard = { :user => 'service' }
+
+        transfer 'init.d/sickbeard', '/tmp/sickbeard_init', { :render => true, :locals => sickbeard } do
+            post :install, 'mv /tmp/sickbeard_init /etc/init.d/sickbeard'
+            post :install, 'chmod +x /etc/init.d/sickbeard'
+            post :install, 'update-rc.d sickbeard defaults'
+            post :install, '[ ! -e /var/run/sickbeard/sickbeard.pid ] || sudo service sickbeard restart'
+        end
+
+        verify do
+          has_file '/etc/init.d/sickbeard'
+          file_contains '/etc/init.d/sickbeard', 'APP_PATH=/opt/sickbeard'
+          file_contains '/etc/init.d/sickbeard', "RUN_AS=#{sickbeard[:user]}"
+          file_contains '/etc/init.d/sickbeard', 'DATA_DIR=.sickbeard'
+        end
+    end
+                        </code></pre>
+                        <p>Render an ERB config and transfer onto remote host.</p>
+                    </section>
+
+                    <section>
+                        <h3>1.6 Packages (running processes)</h3>
+                        <pre><code>
+package :sickbeard, :provides => :pvr_application do
+    description "A running sickbeard instance running as 'service' user."
+    requires :service_user, :install_sickbeard, :configure_sickbeard
+    runner "service sickbeard start"
+    verify do
+        <b>has_process_running</b> 'SickBeard'
+    end
+end
+                        </code></pre>
+                        <p>Ensure a process is running.</p>
+                    </section>
+
+                    <section>
+                        <h3>1.7 Custom verifiers</h3>
+                        <pre><code>
+module Sprinkle
+  module Verifiers
+    module ProcessRunning
+      Sprinkle::Verify.register(Sprinkle::Verifiers::ProcessRunning)
+
+      def has_process_running(process)
+        @commands << "ps aux | grep \"#{process}\" | grep -v grep"
+      end
+    end
+  end
+end
+
+                        </code></pre>
+                        <p>A custom verifer that checks whether process is running, since the one in the gem doesn't work well for Python processes.</p>
                     </section>
 				</section>
 
 				<section>
                     <h3>2. Policies</h3>
-                    <p>What servers should have what roles.</p>
+                    <br/>
 					<pre><code>
 policy :rails, :roles => :app do
   requires :rails, :version => '2.1.0'
@@ -252,6 +329,8 @@ policy :rails, :roles => :app do
   requires :scm
 end
 					</code></pre>
+                    <br/>
+                    <p>Specify package and 'virtual package' requirements for a <b>Capistrano role</b>.</p>
                     <aside class="notes">
                         A profile is an assignment of group of Sprinkle 'package' dependencies to a Capistrano role.
                         A Capistrano role is a logical grouping of hosts.
