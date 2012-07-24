@@ -223,79 +223,76 @@ It's about what you, the dev, wants to do to a machine.
 				</section>
 
 				<section>
-					<h2>1. Packages</h2>
-                    <p>Loosely, named packages but could also mean
-                        <ul>
-                            <li><b>packages</b></li>
-                            <li><b>running processes</b></li>
-                            <li><b>users</b></li>
-                            <li><b>groups</b></li>
-                            <li><b>configuration files</b></li>
-                            <li>... <b>anything expressible</b> on the shell</li>
-                        </ul>
+                    <h2>Trifecta of Sprinkle</h2>
+                    <p>Everything you need to know to start writing some scripts:
+                       <br/>
+                       <br/>
+                       <ol>
+                          <li class="fragment">'Packages'</li>
+                          <li class="fragment">Policies</li>
+                          <li class="fragment">Deploy delivery</li>
+                        </ol>
                     </p>
 				</section>
 
 				<section>
-                    <h3>1. Packages (example)</h3>
-                    <pre><code>
-# install.rb
-package :ruby do
-  description 'Ruby Virtual Machine'
-  version '1.8.6'
-  source "ftp://ftp.ruby-lang.org/pub/ruby/1.8/ruby-#{version}-p111.tar.gz"
-  requires :ruby_dependencies
-end
+                    <section>
+                        <h3>1.1 Packages</h3>
+                        <p>Loosely, named packages but could also mean
+                            <ul>
+                                <li><b>packages</b></li>
+                                <li><b>running processes</b></li>
+                                <li><b>users</b></li>
+                                <li><b>groups</b></li>
+                                <li><b>configuration files</b></li>
+                                <li>... <b>anything expressible</b> on the shell</li>
+                            </ul>
+                        </p>
+                    </section>
 
-package :ruby_dependencies do
-  description 'Ruby Virtual Machine Build Dependencies'
-  apt %w( bison zlib1g-dev libssl-dev libreadline5-dev libncurses5-dev file )
-end
+                    <section>
+                        <h3>1.2 Packages (example)</h3>
+                        <pre><code>
+    # install.rb
+    package :ruby do
+      description 'Ruby Virtual Machine'
+      version '1.8.6'
+      source "ftp://ftp.ruby-lang.org/pub/ruby/1.8/ruby-#{version}-p111.tar.gz"
+      requires :ruby_dependencies
+    end
 
-package :mysql, :provides => :database do
-  description 'MySQL Database'
-  apt %w( mysql-server mysql-client )
-end
-					</code></pre>
-                    <p>Included install primitives: <code>apt</code>, <code>.deb</code>, <code>yum</code>, <code>.rpm</code>, Homebrew. When in doubt install <b>from source</b> and/or <b>shell out into <code>bash</code></b> using the <code>runner</code> primitive.</p>
-					<p>(example from <a href="https://github.com/crafterm/sprinkle/">Sprinkle GitHub README</a>)</p>
-				</section>
+    package :ruby_dependencies do
+      description 'Ruby Virtual Machine Build Dependencies'
+      apt %w( bison zlib1g-dev libssl-dev libreadline5-dev libncurses5-dev file )
+    end
 
-				<section>
-                    <h3>Trifecta of Sprinkle</h3>
-                    <p>Simple ideas:
-                       <ul>
-                          <li>'packages'</li>
-                          <li>policies</li>
-                          <li>deployment method</li>
-                        </ul>
-                    </p>
-				</section>
+    package :mysql, :provides => :database do
+      description 'MySQL Database'
+      apt %w( mysql-server mysql-client )
+    end
+                        </code></pre>
+                        <p>Included install primitives: <code>apt</code>, <code>.deb</code>, <code>yum</code>, <code>.rpm</code>, Homebrew. When in doubt install <b>from source</b> and/or <b>shell out into <code>bash</code></b> using the <code>runner</code> primitive.</p>
+                        <p>(example from <a href="https://github.com/crafterm/sprinkle/">Sprinkle GitHub README</a>)</p>
+                    </section>
 
-				<section>
-                    <h3>1. Packages (example)</h3>
-                    <pre><code>
-# install.rb
-package :service_user do
-  description "Ensure there's a no-login user called 'service'"
-  service_user = 'service'
 
-  runner "useradd -m #{service_user} --shell /usr/sbin/nologin"
-  verify do
-    has_user "#{service_user}"
-    has_directory "/home/#{service_user}"
-  end
-end
-					</code></pre>
-                    <p>Ensure a user exists.</p>
-				</section>
+                    <section>
+                        <h3>1.3 Packages (example)</h3>
+                        <pre><code>
+    # install.rb
+    package :service_user do
+      description "Ensure there's a no-login user called 'service'"
+      service_user = 'service'
 
-				<section>
-                    <h3>Invoking sprinkle</h3>
-                    <p>Easy as pie...</p>
-					<pre><code>
-                        $ sprinkle -c -s install.rb
-					</code></pre>
+      runner "useradd -m #{service_user} --shell /usr/sbin/nologin"
+      verify do
+        has_user "#{service_user}"
+        has_directory "/home/#{service_user}"
+      end
+    end
+                        </code></pre>
+                        <p>Ensure a user exists.</p>
+                    </section>
 				</section>
 
 				<section>
@@ -319,20 +316,30 @@ end
                     </aside>
 				</section>
 
-
 				<section>
-                    <h3>3. Deployment method</h3>
-                    <p>Typically, we delegate the dishing-out of shell commands to a multitude of servers to <b>Capistrano</b>...</p>
-					<pre><code>
-deployment do
+                    <section>
+                        <h3>3.1 Deploy Delivery</h3>
+                        <p>Typically, we delegate the dishing-out of shell commands to a multitude of servers to <b>Capistrano</b>...</p>
+                        <pre><code>
+    deployment do
 
-  # mechanism for deployment
-  delivery :capistrano do
-    recipes 'deploy'
-  end
+      delivery :capistrano do
+        recipes 'deploy'
+      end
 
-end
-					</code></pre>
+    end
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>3.2 Deploy Delivery</h3>
+                        <p>Alternatively, administer your local machine.</p>
+                        <pre><code>
+    deployment do
+      delivery :local
+    end
+                        </code></pre>
+                    </section>
 				</section>
 
 				<section>
