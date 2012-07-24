@@ -58,6 +58,12 @@ It's about what you, the dev, wants to do to a machine.
  - works over SSH
  - Ruby DSL
  - Might even work on Windows
+ - Capistrano
+
+#### Capistrano
+Yet another Ruby DSL for running scripts on multiple servers over SSH.
+Quite Ruby on  Rails oriented but thankfully Sprinkle hides this from you...
+somehow... and allows you to install anything you wish, pretty much.
 
 ### Limitations
 Testing is still a bitch.
