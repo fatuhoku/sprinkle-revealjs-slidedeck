@@ -1,49 +1,49 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-		<title>reveal.js - HTML5 Presentations</title>
+        <title>reveal.js - HTML5 Presentations</title>
 
-		<meta name="description" content="An easy to use CSS 3D slideshow tool for quickly creating good looking HTML presentations.">
-		<meta name="author" content="Hakim El Hattab">
+        <meta name="description" content="An easy to use CSS 3D slideshow tool for quickly creating good looking HTML presentations.">
+        <meta name="author" content="Hakim El Hattab">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/print.css" type="text/css" media="print">
 
-		<link rel="stylesheet" href="lib/css/zenburn.css">
-	</head>
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+    </head>
 
-	<body>
+    <body>
 
-		<div class="reveal">
+        <div class="reveal">
 
-			<!-- Used to fade in a background when a specific slide state is reached -->
-			<div class="state-background"></div>
+            <!-- Used to fade in a background when a specific slide state is reached -->
+            <div class="state-background"></div>
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
 
                 <!-- Title page -->
-				<section>
-					<h1>Sprinkle</h1>
-					<h3 class="inverted">Declarative dependency-based configuration management and server provisioning</h3>
-					<script>
-						// Delicously hacky. Look away.
-						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
-					</script>
-				</section>
+                <section>
+                    <h1>Sprinkle</h1>
+                    <h3 class="inverted">Declarative dependency-based configuration management and server provisioning</h3>
+                    <script>
+                        // Delicously hacky. Look away.
+                    if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+                    </script>
+                </section>
 
-				<!-- What we like to do (octopus) -->
+                <!-- What we like to do (octopus) -->
 
-				<section>
+                <section>
                     <section>
                         <h2>Developers and DevOps</h2>
                         <p>
@@ -51,13 +51,13 @@
                         </p>
                         <aside class="notes">
                             Lots of IT infrastructure in software dev:
-                             - developer machine
-                             - QA environment
-                             - stage environment
-                             - production environment
-                             - client infrastructure...
+                            - developer machine
+                            - QA environment
+                            - stage environment
+                            - production environment
+                            - client infrastructure...
 
-                             That's at least 5 lots of machines we sort of want to manage the configuration of, each with different requirements.
+                            That's at least 5 lots of machines we sort of want to manage the configuration of, each with different requirements.
                         </aside>
                     </section>
                     <section>
@@ -80,8 +80,8 @@
                     </section>
                 </section>
 
-				<!-- Puppet is not the answer -->
-				<section>
+                <!-- Puppet is not the answer -->
+                <section>
 
                     <section>
                         <img width="349" height="469" src="img/puppet.png">
@@ -133,21 +133,21 @@
                         <br/>
                     </section>
                     <aside class="notes">
-We just have to ask, what is the developer's favourite tool.
-SSH. Imagine if you could just SSH into everything and do just the
-right thing on each of them.
+                        We just have to ask, what is the developer's favourite tool.
+                        SSH. Imagine if you could just SSH into everything and do just the
+                        right thing on each of them.
 
-It's about what you, the dev, wants to do to a machine.
+                        It's about what you, the dev, wants to do to a machine.
                     </aside>
                 </section>
 
-				<!-- Sprinkle -->
-				<section data-state="sprinkler">
-					<section>
-						<h2>Sprinkle is your friend.</h2>
-					</section>
-					<section data-state="dark-div">
-						<h3>Overview of Sprinkle</h3>
+                <!-- Sprinkle -->
+                <section data-state="sprinkler">
+                    <section>
+                        <h2>Sprinkle is your friend.</h2>
+                    </section>
+                    <section data-state="dark-div">
+                        <h3>Overview of Sprinkle</h3>
                         <ul>
                             <li class="fragment">A Ruby <img width="40" height="40" src="img/ruby.png"></li>
                             <li class="fragment">... dependency-based</li>
@@ -157,35 +157,35 @@ It's about what you, the dev, wants to do to a machine.
                             <li class="fragment">... that works over SSH</li>
                             <li class="fragment">... (optionally) using Capistrano</li>
                         </ul>
-					</section>
-					<section data-state="dark-div">
-						<h3>Push based configuration management</h3>
-						<pre>
-							<img width="868" height="761" src="img/network.png">
-						</pre>
-						<aside class="notes">
-							Well there's definitely a difference from puppet in that all your configuration
-							is stored and edited locally, and yet applied onto various environments.
-						</aside>
-					</section>
-				</section>
+                    </section>
+                    <section data-state="dark-div">
+                        <h3>Push based configuration management</h3>
+                        <pre>
+                            <img width="868" height="761" src="img/network.png">
+                        </pre>
+                        <aside class="notes">
+                            Well there's definitely a difference from puppet in that all your configuration
+                            is stored and edited locally, and yet applied onto various environments.
+                        </aside>
+                    </section>
+                </section>
 
-				<!-- The 3 Concepts -->
-				<!-- Video demonstration ...? -->
-				<section>
+                <!-- The 3 Concepts -->
+                <!-- Video demonstration ...? -->
+                <section>
                     <h2>Trifecta of Sprinkle</h2>
                     <p>Everything you need to know to start writing some scripts:
-                       <br/>
-                       <br/>
-                       <ol>
-                          <li class="fragment">'Packages'</li>
-                          <li class="fragment">Policies</li>
-                          <li class="fragment">Deploy delivery</li>
+                        <br/>
+                        <br/>
+                        <ol>
+                            <li class="fragment">'Packages'</li>
+                            <li class="fragment">Policies</li>
+                            <li class="fragment">Deploy delivery</li>
                         </ol>
                     </p>
-				</section>
+                </section>
 
-				<section>
+                <section>
                     <section>
                         <h3>1.1 Packages (overview)</h3>
                         <p>Loosely, named packages but could also mean
@@ -315,12 +315,12 @@ end
                         </code></pre>
                         <p>A custom verifer that checks whether process is running, since the one in the gem doesn't work well for Python processes.</p>
                     </section>
-				</section>
+                </section>
 
-				<section>
+                <section>
                     <h3>2. Policies</h3>
                     <br/>
-					<pre><code>
+                    <pre><code>
 policy :rails, :roles => :app do
   requires :rails, :version => '2.1.0'
   requires :appserver
@@ -328,7 +328,7 @@ policy :rails, :roles => :app do
   requires :webserver
   requires :scm
 end
-					</code></pre>
+                    </code></pre>
                     <br/>
                     <p>Specify package and 'virtual package' requirements for a <b>Capistrano role</b>.</p>
                     <aside class="notes">
@@ -338,9 +338,9 @@ end
                         allows the user to associate groups of package dependencies using the declarative syntax we
                         saw earlier.
                     </aside>
-				</section>
+                </section>
 
-				<section>
+                <section>
                     <section>
                         <h3>3.1 Deploy Delivery</h3>
                         <p>Typically, we delegate the dishing-out of shell commands to a multitude of servers to <b>Capistrano</b>...</p>
@@ -364,124 +364,124 @@ end
     end
                         </code></pre>
                     </section>
-				</section>
+                </section>
 
-				<section>
+                <section>
                     <h3>4. Invoking sprinkle</h3>
                     <p>Easy as pie...</p>
-					<pre><code>
+                    <pre><code>
                         $ sprinkle -c -s install.rb
-					</code></pre>
-				</section>
+                    </code></pre>
+                </section>
 
-				<section>
-					<h2>Some limitations...</h2>
-					<p>
+                <section>
+                    <h2>Some limitations...</h2>
+                    <p>
                         <ul>
-                        <li class="fragment">Testing is still a bitch.</li>
-                        <li class="fragment">You will need to iteratively</li>
-                        <li class="fragment">Development of such a script is much faster than making a Puppet script.</li>
-                        <li class="fragment">SSH access to every machine requires provisioning.</li>
-                        <li class="fragment">SSH key management</li>
-                        <li class="fragment">Often requires SSH root access (necessarily less secure)</li>
+                            <li class="fragment">Testing is still a bitch.</li>
+                            <li class="fragment">You will need to iteratively</li>
+                            <li class="fragment">Development of such a script is much faster than making a Puppet script.</li>
+                            <li class="fragment">SSH access to every machine requires provisioning.</li>
+                            <li class="fragment">SSH key management</li>
+                            <li class="fragment">Often requires SSH root access (necessarily less secure)</li>
                         </ul>
-					</p>
-				</section>
+                    </p>
+                </section>
 
-				<section>
-					<h1>Thanks!</h1>
-					<h3 class="inverted">By Hok Shun Poon</h3>
-				</section>
+                <section>
+                    <h1>Thanks!</h1>
+                    <h3 class="inverted">By Hok Shun Poon</h3>
+                </section>
 
                 <!-- Appendix from reveal.js -->
-				<section>
-					<section data-state="alert">
-						<h2>Global State</h2>
-						<p>
-							Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-							will be added as a class to the document element when the slide is open. This let's you
-							apply broader style changes, like switching the background.
-						</p>
-						<a href="#/7/1" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						</a>
-					</section>
-					<section data-state="blackout">
-						<h2>"blackout"</h2>
-						<a href="#/7/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						</a>
-					</section>
-					<section data-state="soothe">
-						<h2>"soothe"</h2>
-						<a href="#/7/0" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
-			</div>
+                <section>
+                    <section data-state="alert">
+                        <h2>Global State</h2>
+                        <p>
+                            Set <code>data-state="something"</code> on a slide and <code>"something"</code>
+                            will be added as a class to the document element when the slide is open. This let's you
+                            apply broader style changes, like switching the background.
+                        </p>
+                        <a href="#/7/1" class="image">
+                            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+                        </a>
+                    </section>
+                    <section data-state="blackout">
+                        <h2>"blackout"</h2>
+                        <a href="#/7/2" class="image">
+                            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+                        </a>
+                    </section>
+                    <section data-state="soothe">
+                        <h2>"soothe"</h2>
+                        <a href="#/7/0" class="image">
+                            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" style="-webkit-transform: rotate(180deg);">
+                        </a>
+                    </section>
+                </section>
+            </div>
 
 
-			<!-- The navigational controls UI -->
-			<aside class="controls">
-				<a class="left" href="#">&#x25C4;</a>
-				<a class="right" href="#">&#x25BA;</a>
-				<a class="up" href="#">&#x25B2;</a>
-				<a class="down" href="#">&#x25BC;</a>
-			</aside>
+            <!-- The navigational controls UI -->
+            <aside class="controls">
+                <a class="left" href="#">&#x25C4;</a>
+                <a class="right" href="#">&#x25BA;</a>
+                <a class="up" href="#">&#x25B2;</a>
+                <a class="down" href="#">&#x25BC;</a>
+            </aside>
 
-			<!-- Presentation progress bar -->
-			<div class="progress"><span></span></div>
+            <!-- Presentation progress bar -->
+            <div class="progress"><span></span></div>
 
-		</div>
+        </div>
 
-		<script src="lib/js/head.min.js"></script>
+        <script src="lib/js/head.min.js"></script>
 
-		<script>
-			// Load reveal.js as well as a classList polyfill if needed
-			head.js( !document.body.classList ? 'lib/js/classList.js' : null )
-				.js( 'js/reveal.js', function() {
+        <script>
+            // Load reveal.js as well as a classList polyfill if needed
+        head.js( !document.body.classList ? 'lib/js/classList.js' : null )
+        .js( 'js/reveal.js', function() {
 
-				// Parse the query string into a key/value object
-				var query = {};
-				location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
-					query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
-				} );
+                // Parse the query string into a key/value object
+                var query = {};
+                location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+                    query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+                    } );
 
-				// Fires when a slide with data-state=customevent is activated
-				Reveal.addEventListener( 'customevent', function() {
-					console.log( '"customevent" has fired' );
-				} );
+                // Fires when a slide with data-state=customevent is activated
+                Reveal.addEventListener( 'customevent', function() {
+                    console.log( '"customevent" has fired' );
+                    } );
 
-				// Fires each time a new slide is activated
-				Reveal.addEventListener( 'slidechanged', function( event ) {
-					// event.previousSlide, event.currentSlide, event.indexh, event.indexv
-				} );
+                // Fires each time a new slide is activated
+                Reveal.addEventListener( 'slidechanged', function( event ) {
+                    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+                    } );
 
-				// Full list of configuration options available here:
-				// https://github.com/hakimel/reveal.js#configuration
-				Reveal.initialize({
-					controls: true,
-					progress: true,
-					history: true,
+                // Full list of configuration options available here:
+                // https://github.com/hakimel/reveal.js#configuration
+                Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
 
-					theme: query.theme || 'default', // default/neon/beige
-					transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
-				});
+theme: query.theme || 'default', // default/neon/beige
+transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+});
 
-			} );
+} );
 
-			// Load highlight.js for syntax highlighting of code samples
-			head.js( 'lib/js/highlight.js', function() {
-				hljs.initHighlightingOnLoad();
-			} );
+// Load highlight.js for syntax highlighting of code samples
+head.js( 'lib/js/highlight.js', function() {
+        hljs.initHighlightingOnLoad();
+        } );
 
-			// If we're runnning the notes server we need to include some additional JS
-			// TODO Is there a better way to determine if we're running the notes server?
-			if( window.location.host === 'localhost:1947' ) {
-				head.js( 'socket.io/socket.io.js', 'plugin/speakernotes/client.js' );
-			}
-		</script>
+// If we're runnning the notes server we need to include some additional JS
+// TODO Is there a better way to determine if we're running the notes server?
+if( window.location.host === 'localhost:1947' ) {
+    head.js( 'socket.io/socket.io.js', 'plugin/speakernotes/client.js' );
+}
+</script>
 
-	</body>
+    </body>
 </html>
