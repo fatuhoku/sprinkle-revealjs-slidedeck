@@ -59,6 +59,7 @@ It's about what you, the dev, wants to do to a machine.
  - Ruby DSL
  - Might even work on Windows
  - Capistrano
+ - A bit like Ansible
 
 #### Capistrano
 Yet another Ruby DSL for running scripts on multiple servers over SSH.
